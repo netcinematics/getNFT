@@ -1,2 +1,7 @@
 # getNFT
-Get me my NFTs! From OpenSea API. Using simple, vanilla HTML JS and CSS. Template. nJoy! - : ) spazeFalcon
+Get me NFTs! 
+From OpenSea API. 
+Using simple, vanilla HTML JS and CSS. 
+A NFT BLOCKCHAIN WEB Template.
+Show me your crypto!
+nJoy... - : ) spazeFalcon
