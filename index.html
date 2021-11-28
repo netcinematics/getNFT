@@ -88,7 +88,7 @@ function initPage(){
         artCardIMG.src = nft.image_thumbnail_url;   //small 200 size
         artCard.insertAdjacentElement('afterbegin', artCardIMG);
         if (nftDisplay1) {
-            nftDisplay1.addEventListener('click',()=>{debugger;});
+            artCard.addEventListener('click',()=>{debugger;});
             nftDisplay1.insertAdjacentElement('beforeend', artCard);
         }
      }
