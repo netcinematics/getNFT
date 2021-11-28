@@ -88,6 +88,7 @@ function initPage(){
         artCardIMG.src = nft.image_thumbnail_url;   //small 200 size
         artCard.insertAdjacentElement('afterbegin', artCardIMG);
         if (nftDisplay1) {
+            nftDisplay1.addEventListener('click',()=>{debugger;});
             nftDisplay1.insertAdjacentElement('beforeend', artCard);
         }
      }
@@ -100,7 +101,7 @@ function initPage(){
            
     }
             
-    //Opensea api restful get 
+    //Opensea api restful get DATA EXAMPLE-.
     //   {id: 46114254, token_id: '32091639769859466206787752406743660124435242419967811135209154768441297600513', num_sales: 0, background_color: null, image_url: 'https://lh3.googleusercontent.com/uEnxTjQlrrL9Hvz4…HAr4-M1XVaFwG3ldecFynxR-apjauYwUaFOExktD8YK0-BkpQ', …}
     //     animation_original_url: "https://storage.opensea.io/files/e69e9f24f491a5329f1478e7c0776c7b.mp4"
     //     animation_url: "https://storage.opensea.io/files/e69e9f24f491a5329f1478e7c0776c7b.mp4"
@@ -201,9 +202,8 @@ function initEth(){
     });
 
     setTimeout(() => {
-        mainView.NFTURL = "https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/32091639769859466206787752406743660124435242419967811135209154768441297600513"
         // this.$http.get(`https://api.opensea.io/api/v1/asset/${contractAddress}/${tokenID}`).then((asset) => {
-        // this.$http.get(mainView.NFTUR).then((asset) => {
+        mainView.NFTURL = "https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/32091639769859466206787752406743660124435242419967811135209154768441297600513"
         fetch(mainView.NFTURL).then((asset) => {
         resolve({
             url: asset.data.image_url,
