@@ -39,13 +39,11 @@ class MainViewClass {
 function initPage(){
     if (!window.ethereum){ loginButton.innerText = "Get MetaMask"; return false; } 
     
-
      function getNFT(nftFactory){
-        // example:
+        // EXAMPLE API:
         // let nftFactory={
         //     assetContractAddr:"0x495f947276749Ce646f68AC8c248420045cb7b5e",
         //     tokenId:"32091639769859466206787752406743660124435242419967811135209154768441297600513"}
-
         fetch(`https://api.opensea.io/api/v1/asset/${nftFactory.assetContractAddr}/${nftFactory.tokenId}/`,{method:'GET'})
         .then(response => { //debugger;
             return response.json()
@@ -59,7 +57,7 @@ function initPage(){
      }
 
      function getNFTs(nftFactory){
-        // example:
+        // EXAMPLE:
         var nftFactory={
             owner:"0x5b3256965e7C3cF26E11FCAf296DfC8807C01073"}
         fetch(`https://api.opensea.io/api/v1/assets?owner=${nftFactory.owner}&order_direction=desc&offset=0&limit=20`,{method: 'GET'})
@@ -92,15 +90,7 @@ function initPage(){
         if (nftDisplay1) {
             nftDisplay1.insertAdjacentElement('beforeend', artCard);
         }
-
-   //     image_original_url: null
-    //     image_preview_url: "https://lh3.googleusercontent.com/uEnxTjQlrrL9Hvz46ZDM_tz7J8zoFdQ46VcwZyVk-Go4tse1S7v37HAr4-M1XVaFwG3ldecFynxR-apjauYwUaFOExktD8YK0-BkpQ=s250"
-    //     image_thumbnail_url: "https://lh3.googleusercontent.com/uEnxTjQlrrL9Hvz46ZDM_tz7J8zoFdQ46VcwZyVk-Go4tse1S7v37HAr4-M1XVaFwG3ldecFynxR-apjauYwUaFOExktD8YK0-BkpQ=s128"
-    //     image_url:
-
-
      }
-
 
      function getRandoColor(){
         const h = Math.floor(Math.random() * 360);
@@ -110,9 +100,9 @@ function initPage(){
            
     }
             
-            //Opensea api restfull get returns data
-            //   {id: 46114254, token_id: '32091639769859466206787752406743660124435242419967811135209154768441297600513', num_sales: 0, background_color: null, image_url: 'https://lh3.googleusercontent.com/uEnxTjQlrrL9Hvz4…HAr4-M1XVaFwG3ldecFynxR-apjauYwUaFOExktD8YK0-BkpQ', …}
-            //     animation_original_url: "https://storage.opensea.io/files/e69e9f24f491a5329f1478e7c0776c7b.mp4"
+    //Opensea api restful get 
+    //   {id: 46114254, token_id: '32091639769859466206787752406743660124435242419967811135209154768441297600513', num_sales: 0, background_color: null, image_url: 'https://lh3.googleusercontent.com/uEnxTjQlrrL9Hvz4…HAr4-M1XVaFwG3ldecFynxR-apjauYwUaFOExktD8YK0-BkpQ', …}
+    //     animation_original_url: "https://storage.opensea.io/files/e69e9f24f491a5329f1478e7c0776c7b.mp4"
     //     animation_url: "https://storage.opensea.io/files/e69e9f24f491a5329f1478e7c0776c7b.mp4"
     //     asset_contract: {address: '0x495f947276749ce646f68ac8c248420045cb7b5e', asset_contract_type: 'semi-fungible', created_date: '2020-12-02T17:40:53.232025', name: 'OpenSea Collection', nft_version: null, …}
     //     auctions: []
@@ -162,7 +152,6 @@ function initPage(){
 
     //if metamask exists, add connect button.
     getNFTBtn.addEventListener('click',()=>{
-
         //****************************************************************************
         //OpenSea API : getNFT
         //https://api.opensea.io/api/v1/asset/{asset_contract_address}/{token_id}/
@@ -171,9 +160,6 @@ function initPage(){
         var nftFactory={  //GETNFT by Contract and tokenId.
             assetContractAddr:"0x495f947276749Ce646f68AC8c248420045cb7b5e", 
             tokenId:"32091639769859466206787752406743660124435242419967811135209154768441297600513"}
-            // getNFT(nftFactory)
-        //****************************************************************************
-
         //****************************************************************************
         //OpenSea API : getNFTs
         //https://api.opensea.io/api/v1/asset/{asset_contract_address}/{token_id}/
@@ -205,23 +191,15 @@ function initPage(){
 
 function initEth(){
     mainView.eth.on('accountsChanged', (accounts) => {
-        // Handle the new accounts, or lack thereof.
-        // "accounts" will always be an array, but it can be empty.
     });
     // ethereum.removeListener('accountsChanged', handleAccountsChanged);
     // ethereum.on('connect', handler: (connectInfo: ConnectInfo) => void);
     // ethereum.on('disconnect', handler: (error: ProviderRpcError) => void);
     // ethereum.on('message', handler: (message: ProviderMessage) => void);
     mainView.eth.on('chainChanged', (chainId) => {
-        //KEEP TRACK OF CHAINID.
-        // Handle the new chain.
-        // Correctly handling chain changes can be complicated.
-        // We recommend reloading the page unless you have good reason not to.
         window.location.reload();
     });
 
-    // getTokenImages(contractAddress, tokenID) {
-    // return new Promise((resolve, reject) => {
     setTimeout(() => {
         mainView.NFTURL = "https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/32091639769859466206787752406743660124435242419967811135209154768441297600513"
         // this.$http.get(`https://api.opensea.io/api/v1/asset/${contractAddress}/${tokenID}`).then((asset) => {
@@ -238,184 +216,6 @@ function initEth(){
         })
         }).catch((err) => reject(err))
     }, 200)
-    // })
-    // },
-
-
-
-    /**********************************************************\
-    -  Handle chain (network) and chainChanged (per EIP-1193) 
-    \**********************************************************/
-    // const chainId = await ethereum.request({ method: 'eth_chainId' });
-    // handleChainChanged(chainId);
-    // ethereum.on('chainChanged', handleChainChanged);
-    // function handleChainChanged(_chainId) {
-    //     // We recommend reloading the page, unless you must do otherwise
-    //     window.location.reload();
-    // }
-
-    /***********************************************************/
-    /* Handle user accounts and accountsChanged (per EIP-1193) */
-    /***********************************************************/
-
-    // let currentAccount = null;
-    // ethereum
-    // .request({ method: 'eth_accounts' })
-    // .then(handleAccountsChanged)
-    // .catch((err) => {
-    //     // Some unexpected error.
-    //     // For backwards compatibility reasons, if no accounts are available,
-    //     // eth_accounts will return an empty array.
-    //     console.error(err);
-    // });
-
-    // // Note that this event is emitted on page load.
-    // // If the array of accounts is non-empty, you're already
-    // // connected.
-    // ethereum.on('accountsChanged', handleAccountsChanged);
-
-    // // For now, 'eth_accounts' will continue to always return an array
-    // function handleAccountsChanged(accounts) {
-    // if (accounts.length === 0) {
-    //     // MetaMask is locked or the user has not connected any accounts
-    //     console.log('Please connect to MetaMask.');
-    // } else if (accounts[0] !== currentAccount) {
-    //     currentAccount = accounts[0];
-    //     // Do any other work!
-    // }
-    // }
-
-    // /*********************************************/
-    // /* Access the user's accounts (per EIP-1102) */
-    // /*********************************************/
-
-    // // You should only attempt to request the user's accounts in response to user
-    // // interaction, such as a button click.
-    // // Otherwise, you popup-spam the user like it's 1999.
-    // // If you fail to retrieve the user's account(s), you should encourage the user
-    // // to initiate the attempt.
-    // document.getElementById('connectButton', connect);
-
-    // // While you are awaiting the call to eth_requestAccounts, you should disable
-    // // any buttons the user can click to initiate the request.
-    // // MetaMask will reject any additional requests while the first is still
-    // // pending.
-    // function connect() {
-    // ethereum
-    //     .request({ method: 'eth_requestAccounts' })
-    //     .then(handleAccountsChanged)
-    //     .catch((err) => {
-    //     if (err.code === 4001) {
-    //         // EIP-1193 userRejectedRequest error
-    //         // If this happens, the user rejected the connection request.
-    //         console.log('Please connect to MetaMask.');
-    //     } else {
-    //         console.error(err);
-    //     }
-    //     });
-    // }
-
-    //GETNFT****************************************************************************************
-
-    //npm install api --save
-    // const sdk = require('api')('@opensea/v1.0#gbq4cz1cksxopxqw');
-    // sdk['retrieving-a-single-asset']({
-    //     asset_contract_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
-    //     token_id: '1'
-    // })
-    // .then(res => console.log(res))
-    // .catch(err => console.error(err));
-
-
-
-    //opensea-js seaport
-    // const asset = {
-    //     tokenAddress: "0x06012c8cf97bead5deae237070f9587f8e7a266d", // CryptoKitties
-    //     tokenId: "1", // Token ID
-    // }
-    // const asset: OpenSeaAsset = await seaport.api.getAsset({
-    //     tokenAddress, // string
-    //     tokenId, // string | number | null
-    // })
-
-//**************************************************************
-
-/*******************
-In order to get all ERC-20 token balances of an address, the easiest solution (apart from finding an API that returns the data) is to loop through all token contracts (or just the tokens that you're interested in), and call their balanceOf(address) function.
-
-const tokenAddresses = [
-    '0x123',
-    '0x456',
-];
-const myAddress = '0x789';
-
-for (let tokenAddress of tokenAddresses) {
-    const contract = new web3.eth.Contract(erc20AbiJson, tokenAddress);
-    const tokenBalance = await contract.methods.balanceOf(myAddress).call();
-}
-https://stackoverflow.com/questions/68085393/web3-get-all-tokens-by-wallet-address
-
-
-getTokenImages(contractAddress, tokenID) {
-return new Promise((resolve, reject) => {
-setTimeout(() => {
-let mainView.NFTURL = "https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/32091639769859466206787752406743660124435242419967811135209154768441297600513"
-this.$http.get(`https://api.opensea.io/api/v1/asset/${contractAddress}/${tokenID}`).then((asset) => {
-resolve({
-url: asset.data.image_url,
-previewUrl: asset.data.image_preview_url,
-thumbnailUrl: asset.data.image_thumbnail_url,
-originalUrl: asset.data.image_original_url,
-name: asset.data.name,
-permalink: asset.data.permalink,
-traits: asset.data.traits,
-})
-}).catch((err) => reject(err))
-}, 300)
-})
-},
-
-this.statusAction = 'Getting metadata and image URLs via OpenSea...'
-try {
-const images = await this.getTokenImages(contractAddress, transactions[i].tokenID)
-// console.log(images)
-this.assets.push({
-name: transactions[i].tokenName,
-symbol: transactions[i].tokenSymbol,
-tokenID: transactions[i].tokenID,
-images: images
-})
-} catch (err) {
-console.log('Failed to parse', transactions[i].tokenName, contractAddress)
-}
-}
-
-if (!this.assets.length) {
-this.statusAction = 'Failed to load assets from this address. Check the address and try again'
-return
-}
-
-window.localStorage.setItem('savedAssets', JSON.stringify(this.assets))
-window.localStorage.setItem('savedAddress', this.targetAddress)
-console.log('Saved assets and address')
-
-https://github.com/Cyrxopto/nifty-gallery/blob/master/src/components/Gallery.vue
-
-*/ //-------------------------------------------------------------------------------
-
-//ether scan
-     
-// getERC721Transactions () {
-//       return new Promise((resolve, reject) => {
-//         const url = `https://api.etherscan.io/api?module=account&action=tokennfttx&address=${this.targetAddress}&startblock=0&endblock=999999999&sort=asc&apikey=${this.etherscanApiKey}`
-//         this.$http.get(url).then((resp) => {
-//           resolve(resp.data.result)
-//         }).catch((err) => reject(err))
-//       })
-//     },
-
-
-
 
 } //END InitEth()
 
