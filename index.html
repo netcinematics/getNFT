@@ -47,16 +47,13 @@ function initPage(){
         //     tokenId:"32091639769859466206787752406743660124435242419967811135209154768441297600513"}
 
         fetch(`https://api.opensea.io/api/v1/asset/${nftFactory.assetContractAddr}/${nftFactory.tokenId}/`,{method:'GET'})
-        .then(response => {
-            debugger;
+        .then(response => { //debugger;
             return response.json()
         })
-        .then(data => {
-            debugger;
+        .then(data => { //debugger;
             console.log(data)
         })
-        .catch(err => {
-            debugger;
+        .catch(err => { //debugger;
             console.error(err)
         });
      }
@@ -67,15 +64,13 @@ function initPage(){
             owner:"0x5b3256965e7C3cF26E11FCAf296DfC8807C01073"}
         fetch(`https://api.opensea.io/api/v1/assets?owner=${nftFactory.owner}&order_direction=desc&offset=0&limit=20`,{method: 'GET'})
         .then(response => { return response.json() })
-        .then((data) => {
-            // debugger; console.log(data);
+        .then((data) => {  // debugger; console.log(data);
             showNFTs(data.assets)
         })
         .catch(err => {debugger; console.error(err)});
      }
 
-     function showNFTs(assets){
-        //  debugger; //TODO switch by DISPLAY-FACTORY-.
+     function showNFTs(assets){ //  debugger; //TODO switch by DISPLAY-FACTORY-.
         for(let nft of assets){
             console.log("displaying",nft.id,"of",assets.length) 
             createArtCard(nft)
@@ -108,32 +103,11 @@ function initPage(){
 
 
      function getRandoColor(){
-
         const h = Math.floor(Math.random() * 360);
         const s = Math.floor(Math.random() * 100);
         const l = Math.floor(Math.random() * 100);
-        
         return `hsl(${h}deg, ${s}%, ${l}%)`;
-
-
-        //  const background = document.getElementById("background");
-         
-        //  const getRandomNumber = (maxNum) => {
-            //  return Math.floor(Math.random() * maxNum);
-            // };
-            
-            // const getRandomColor = () => {
-                // const h = getRandomNumber(360);
-                // const s = getRandomNumber(100);
-                // const l = getRandomNumber(100);
-                
-                // return `hsl(${h}deg, ${s}%, ${l}%)`;
-            // };
-            
-
-            
-
-            
+           
     }
             
             //Opensea api restfull get returns data
@@ -188,9 +162,6 @@ function initPage(){
 
     //if metamask exists, add connect button.
     getNFTBtn.addEventListener('click',()=>{
-       
-        
-
 
         //****************************************************************************
         //OpenSea API : getNFT
@@ -212,75 +183,19 @@ function initPage(){
             assetContractAddr:"0x495f947276749Ce646f68AC8c248420045cb7b5e", 
             tokenId:"32091639769859466206787752406743660124435242419967811135209154768441297600513"}
             getNFTs(nftFactory)
-
-  
-
-
         //****************************************************************************
-
-
-
-        // fetch('https://api.opensea.io/api/v1/asset/0x495f947276749Ce646f68AC8c248420045cb7b5e/32091639769859466206787752406743660124435242419967811135209154768441297600513/', options)
-        // .then(response => {
-        //     debugger;
-        //     return response.json()
-        // })
-        // .then(data => {
-        //     debugger;
-        //     console.log(data)
-        // })
-        // .catch(err => {
-        //     debugger;
-        //     console.error(err)
-        // });
-
-
-        // const sdk = require('api')('@opensea/v1.0#gbq4cz1cksxopxqw');
-        // sdk['retrieving-a-single-asset']({
-        // asset_contract_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
-        // token_id: '1'
-        // })
-        // .then(res => {
-        //     debugger;
-        //     console.log(res)
-        // })
-        // .catch(err => {
-        //     debugger;
-        //     console.error(err)
-        // });
-        //stackoverflow
-        // const tokenAddresses = [
-        //     '0x123',
-        //     '0x456',
-        // ];
-        // const myAddress = '0x789';
-
-        // for (let tokenAddress of tokenAddresses) {
-        //     const contract = new web3.eth.Contract(erc20AbiJson, tokenAddress);
-        //     const tokenBalance = await contract.methods.balanceOf(myAddress).call();
-        // }
-
 
     });
     loginButton.addEventListener('click',()=>{
-        // if(mainView && mainView.userAccount){
-        // if(window.ethereum && ethereum.isConnected()){
-        //     alert('connected');
-        //     return false;
-        // }
-        debugger;
         ethereum.request({ method: 'eth_requestAccounts' })
         .then((data)=>{
-            debugger;
             mainView = new MainViewClass(data[0])
             loginButton.classList.add('connected')
             loginButton.classList.remove('notConnected')
             loginButton.innerText = "METAMASK CONNECTED"
-            debugger;
             initEth();
         })
         .catch((e)=>{ //user disconnected
-            debugger;
             e.code;
             e.message;
             e.data;
@@ -289,9 +204,7 @@ function initPage(){
 }
 
 function initEth(){
-    debugger;
     mainView.eth.on('accountsChanged', (accounts) => {
-        debugger;
         // Handle the new accounts, or lack thereof.
         // "accounts" will always be an array, but it can be empty.
     });
@@ -300,7 +213,6 @@ function initEth(){
     // ethereum.on('disconnect', handler: (error: ProviderRpcError) => void);
     // ethereum.on('message', handler: (message: ProviderMessage) => void);
     mainView.eth.on('chainChanged', (chainId) => {
-        debugger;
         //KEEP TRACK OF CHAINID.
         // Handle the new chain.
         // Correctly handling chain changes can be complicated.
@@ -311,12 +223,10 @@ function initEth(){
     // getTokenImages(contractAddress, tokenID) {
     // return new Promise((resolve, reject) => {
     setTimeout(() => {
-        debugger;
         mainView.NFTURL = "https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/32091639769859466206787752406743660124435242419967811135209154768441297600513"
         // this.$http.get(`https://api.opensea.io/api/v1/asset/${contractAddress}/${tokenID}`).then((asset) => {
         // this.$http.get(mainView.NFTUR).then((asset) => {
         fetch(mainView.NFTURL).then((asset) => {
-            debugger;
         resolve({
             url: asset.data.image_url,
             previewUrl: asset.data.image_preview_url,
